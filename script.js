@@ -1,11 +1,36 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+import { createClient } from "@supabase/supabase-js";
 
-// TODO: Replace with your actual Supabase project configuration
-const supabaseUrl = "https://pzxzprbwwfezdorvyqxg.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6eHpwcmJ3d2ZlemRvcnZ5cXhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1MTU2NjYsImV4cCI6MjA4ODA5MTY2Nn0.U_G2F4_FYfNqxycRWS4RX5Drpvgndnanvg-ml5HjZIw";
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 // Initialize Supabase
 const supabase = createClient(supabaseUrl, supabaseKey);
+
+// Toast logic
+function showToast(message, type = 'success') {
+    const toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+
+    const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+
+    toast.innerHTML = `
+        <i class="fa-solid ${icon}"></i>
+        <span>${message}</span>
+    `;
+
+    toastContainer.appendChild(toast);
+
+    // Trigger reflow for animation
+    setTimeout(() => toast.classList.add('show'), 10);
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 4000);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     // Custom Select
@@ -251,6 +276,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 submitBtn.innerHTML = '<i class="fa-solid fa-check mr-icon"></i><span class="btn-submit-text">SUCCESS!</span>';
                 submitBtn.style.backgroundColor = '#126574'; // Darker teal
 
+                showToast("Feedback submitted successfully!", "success");
+
                 setTimeout(() => {
                     submitBtn.innerHTML = originalBtnText;
                     submitBtn.style.opacity = '1';
@@ -281,7 +308,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             } catch (error) {
                 console.error("Error saving to Supabase:", error);
-                alert("There was an error saving your feedback. Please check your Supabase configuration and console logs.");
+
+                showToast("There was an error saving your feedback. Please try again.", "error");
+
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.style.opacity = '1';
                 submitBtn.disabled = false;

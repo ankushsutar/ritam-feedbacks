@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>॥ ऋतम् ॥ RITAM Feedback Form</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase SDK will be imported directly in script.js -->
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- SVG background decorations -->
+        <div class="bg-deco mandala">
+            <svg viewBox="0 0 100 100" class="svg-mandala" xmlns="http://www.w3.org/2000/svg">
+                <g fill="none" stroke="#d58632" stroke-width="1.5" opacity="0.4">
+                    <circle cx="0" cy="0" r="40" />
+                    <circle cx="0" cy="0" r="55" stroke-dasharray="3,3" />
+                    <circle cx="0" cy="0" r="70" />
+                    <circle cx="0" cy="0" r="80" stroke-width="0.5" />
+                    <line x1="0" y1="0" x2="80" y2="0" />
+                    <line x1="0" y1="0" x2="69" y2="40" />
+                    <line x1="0" y1="0" x2="40" y2="69" />
+                    <line x1="0" y1="0" x2="0" y2="80" />
+                    <path d="M 0 40 Q 20 20 40 0 M 0 70 Q 35 35 70 0 M 20 -10 L 20 10 M -10 20 L 10 20" />
+                </g>
+            </svg>
+        </div>
+
+        <div class="bg-deco sitar-bg" id="sitarDeco">
+            <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(100,200) rotate(-20) translate(-100,-200)" opacity="0.9">
+                    <circle cx="100" cy="300" r="60" fill="#E8A663" />
+                    <circle cx="100" cy="300" r="55" fill="none" stroke="#C47E3B" stroke-width="2" />
+                    <rect x="85" y="50" width="30" height="200" fill="#E8A663" />
+                    <line x1="90" y1="50" x2="90" y2="360" stroke="#FFF" opacity="0.8" />
+                    <line x1="95" y1="50" x2="95" y2="360" stroke="#FFF" opacity="0.8" />
+                    <line x1="100" y1="50" x2="100" y2="360" stroke="#FFF" opacity="0.8" />
+                    <line x1="105" y1="50" x2="105" y2="360" stroke="#FFF" opacity="0.8" />
+                    <line x1="110" y1="50" x2="110" y2="360" stroke="#FFF" opacity="0.8" />
+                    <circle cx="75" cy="80" r="8" fill="#4A2F1D" />
+                    <circle cx="75" cy="120" r="8" fill="#4A2F1D" />
+                    <circle cx="75" cy="160" r="8" fill="#4A2F1D" />
+                    <circle cx="125" cy="100" r="8" fill="#4A2F1D" />
+                    <circle cx="125" cy="140" r="8" fill="#4A2F1D" />
+                    <path d="M 85 250 L 115 250 L 120 280 L 80 280 Z" fill="#9C521B" />
+                </g>
+            </svg>
+        </div>
+
+        <header class="header">
+            <div class="header-top-grid">
+                <div class="date-section">
+                    <div class="calendar-icon">
+                        <div class="cal-month">March</div>
+                        <div class="cal-day">8</div>
+                    </div>
+                    <div class="date-text">March 8</div>
+                </div>
+
+                <div class="header-center">
+                    <div class="festival-text">IIT BOMBAY ANNUAL SANSKRIT FESTIVAL</div>
+                    <h1 class="main-title">॥ ऋतम् ॥</h1>
+                    <h2 class="sub-title">RITAM</h2>
+                </div>
+
+                <div class="loc-section">
+                    <div class="loc-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="loc-text">PC Saxena<br>Auditorium</div>
+                </div>
+            </div>
+
+            <div class="banner-strip">
+                Let's keep Sanskrit flying! <span class="monospaced">import antigravity</span> (as fun reference)
+            </div>
+        </header>
+
+        <main class="content">
+            <form id="feedbackForm" onsubmit="event.preventDefault();">
+                <!-- Section 1 -->
+                <section class="card">
+                    <h3 class="card-title">1. TONE & CONTEXT <span class="subtitle-light">(Demographics)</span></h3>
+
+                    <div class="form-group">
+                        <label for="name">Name <span class="subtitle-light">(Optional)</span></label>
+                        <input type="text" id="name" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Age Bracket</label>
+                        <div class="custom-select" id="ageSelect">
+                            <div class="select-selected">
+                                <span class="selected-text">18-30</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="select-items select-hide">
+                                <div class="same-as-selected" data-value="18-30"><i class="fa-solid fa-check check-icon"
+                                        style="opacity:1;"></i> 18-30</div>
+                                <div data-value="31-50"><i class="fa-solid fa-check check-icon" style="opacity:0;"></i>
+                                    31-50</div>
+                                <div data-value="51-70"><i class="fa-solid fa-check check-icon" style="opacity:0;"></i>
+                                    51-70</div>
+                                <div data-value="70+"><i class="fa-solid fa-check check-icon" style="opacity:0;"></i>
+                                    70+</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mother-tongue">Mother Tongue</label>
+                        <input type="text" id="mother-tongue" class="form-control" placeholder="Mother Tongue">
+                        <small class="help-text">Helping us celebrate diverse voices.</small>
+                    </div>
+                </section>
+
+                <!-- Section 2 -->
+                <section class="card">
+                    <h3 class="card-title">2. THE 'VIBE' CHECK <span class="subtitle-light">(Ratings)</span></h3>
+
+                    <div class="form-group">
+                        <label class="mb-label">How did hearing modern music in Sanskrit make you feel?</label>
+                        <div class="emoji-rating-group">
+                            <div class="rating-track"></div>
+                            <label class="emoji-option">
+                                <input type="radio" name="feeling" value="confused" checked>
+                                <span class="emoji">🤔</span>
+                                <span class="emoji-label">Confused <span class="tiny-emoji">😕</span></span>
+                                <span class="radio-custom"></span>
+                            </label>
+                            <label class="emoji-option">
+                                <input type="radio" name="feeling" value="neutral">
+                                <span class="emoji">😐</span>
+                                <span class="emoji-label">Neutral</span>
+                                <span class="radio-custom"></span>
+                            </label>
+                            <label class="emoji-option">
+                                <input type="radio" name="feeling" value="intrigued">
+                                <span class="emoji">😃</span>
+                                <span class="emoji-label">Intrigued</span>
+                                <span class="radio-custom"></span>
+                            </label>
+                            <label class="emoji-option">
+                                <input type="radio" name="feeling" value="amazed">
+                                <span class="emoji">🤩</span>
+                                <span class="emoji-label">Amazed</span>
+                                <span class="radio-custom"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="mb-label">Translation & Rhythm</label>
+                        <div class="star-rating" id="starRating">
+                            <i class="fa-solid fa-star active" data-val="1"></i>
+                            <i class="fa-solid fa-star active" data-val="2"></i>
+                            <i class="fa-solid fa-star active" data-val="3"></i>
+                            <i class="fa-solid fa-star active" data-val="4"></i>
+                            <i class="fa-solid fa-star active" data-val="5"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-0">
+                        <label class="mb-label">Compared to traditional exams, how accessible did this feel?</label>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="10" value="0" class="custom-slider"
+                                id="accessibility-slider">
+                            <div class="slider-labels">
+                                <div class="slider-label-left">
+                                    <span class="slider-val">0</span><br>
+                                    <span class="slider-text">Traditional/Rigid</span>
+                                </div>
+                                <div class="slider-label-right">
+                                    <span class="slider-val">10</span><br>
+                                    <span class="slider-text">Alive/Natural</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3 -->
+                <section class="card relative-card">
+                    <h3 class="card-title">3. SHARE YOUR STORY <span class="subtitle-light">(Open Feedback)</span></h3>
+
+                    <div class="form-group">
+                        <label for="story" class="mb-label font-normal-thick">Did today's performance change how you
+                            view the future of Sanskrit? How does this compare to your past experiences?</label>
+                        <textarea id="story" class="form-control textarea"
+                            placeholder="Type your thoughts here or share your voice..."></textarea>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button type="button" class="btn btn-record" id="recordAudioBtn">
+                            <i class="fa-solid fa-microphone btn-icon" id="recordIcon"></i>
+                            <span class="btn-text" id="recordText">TAP TO<br>RECORD AUDIO</span>
+                        </button>
+                        <button type="button" class="btn btn-upload"
+                            onclick="document.getElementById('mediaUpload').click()">
+                            <i class="fa-solid fa-camera btn-icon"></i>
+                            <span class="btn-text">UPLOAD<br>VIDEO/PHOTO</span>
+                            <input type="file" id="mediaUpload" accept="image/*,video/*" style="display: none;">
+                        </button>
+                    </div>
+
+                    <div class="submit-section">
+                        <button type="submit" class="btn-submit">
+                            <i class="fa-solid fa-rocket mr-icon"></i>
+                            <span class="btn-submit-text">SUBMIT<br>YOUR STORY</span>
+                        </button>
+                        <label class="consent-label">
+                            <span class="checkbox-wrapper">
+                                <input type="checkbox" checked class="custom-checkbox">
+                                <span class="checkmark"><i class="fa-solid fa-check"></i></span>
+                            </span>
+                            <span class="consent-text">I consent to sharing my feedback for alternative education
+                                research on Sanskrit resilience.</span>
+                        </label>
+                    </div>
+                </section>
+            </form>
+        </main>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

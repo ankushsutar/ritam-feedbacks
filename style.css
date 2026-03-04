@@ -564,6 +564,12 @@ body {
   text-align: left;
 }
 
+.btn-submit:disabled {
+  background-color: #A0A0A0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .consent-label {
   display: flex;
   align-items: flex-start;

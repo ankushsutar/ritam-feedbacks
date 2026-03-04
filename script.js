@@ -172,11 +172,35 @@ document.addEventListener("DOMContentLoaded", () => {
     // Form Submission & Firebase Save
     const form = document.getElementById('feedbackForm');
 
+    // Validation Logic
+    const motherTongueInput = document.getElementById('mother-tongue');
+    const storyInput = document.getElementById('story');
+    const consentCheckbox = document.querySelector('.custom-checkbox');
+    const submitBtn = document.querySelector('.btn-submit');
+
+    function validateForm() {
+        const isMotherTongueValid = motherTongueInput.value.trim() !== '';
+        const isStoryValid = storyInput.value.trim().length >= 10;
+        const isConsentValid = consentCheckbox.checked;
+
+        if (isMotherTongueValid && isStoryValid && isConsentValid) {
+            submitBtn.disabled = false;
+        } else {
+            submitBtn.disabled = true;
+        }
+    }
+
+    motherTongueInput.addEventListener('input', validateForm);
+    storyInput.addEventListener('input', validateForm);
+    consentCheckbox.addEventListener('change', validateForm);
+
+    // Initial validation check
+    validateForm();
+
     if (form) {
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const submitBtn = document.querySelector('.btn-submit');
             const originalBtnText = submitBtn.innerHTML;
 
             // Visual feedback
@@ -188,16 +212,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 // 1. Gather Text Data
                 const name = document.getElementById('name').value || 'Anonymous';
                 const age = document.querySelector('#ageSelect .selected-text').innerText;
-                const motherTongue = document.getElementById('mother-tongue').value || 'Not provided';
+                const motherTongue = motherTongueInput.value || 'Not provided';
 
                 const feelingInput = document.querySelector('input[name="feeling"]:checked');
                 const feeling = feelingInput ? feelingInput.value : 'None';
 
                 const activeStars = document.querySelectorAll('#starRating i.active').length;
                 const accessibility = document.getElementById('accessibility-slider').value;
-                const story = document.getElementById('story').value || 'No story provided.';
+                const story = storyInput.value || 'No story provided.';
 
-                const consent = document.querySelector('.custom-checkbox').checked;
+                const consent = consentCheckbox.checked;
 
                 let uploadedAudioUrl = null;
                 let uploadedMediaUrl = null;
@@ -281,14 +305,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     submitBtn.innerHTML = originalBtnText;
                     submitBtn.style.opacity = '1';
-                    submitBtn.disabled = false;
+                    submitBtn.disabled = true; // RE-DISABLE after success
                     submitBtn.style.backgroundColor = '';
 
                     // Reset form fields
                     form.reset();
-                    document.getElementById('story').value = '';
+                    storyInput.value = '';
                     document.getElementById('name').value = '';
-                    document.getElementById('mother-tongue').value = '';
+                    motherTongueInput.value = '';
 
                     // Reset custom UI elements loosely
                     finalAudioBlob = null;
@@ -304,6 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (mText) mText.innerHTML = "UPLOAD<br>VIDEO/PHOTO";
                         if (mIcon) mIcon.className = 'fa-solid fa-camera btn-icon';
                     }
+                    validateForm(); // Re-run validation to ensure button is disabled if fields are empty
                 }, 3000);
 
             } catch (error) {

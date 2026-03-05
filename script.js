@@ -33,38 +33,56 @@ function showToast(message, type = 'success') {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Custom Select
-    const customSelect = document.getElementById('ageSelect');
-    const selected = customSelect.querySelector('.select-selected');
-    const items = customSelect.querySelector('.select-items');
-    const options = items.querySelectorAll('div');
+    // Custom Selects
+    function initCustomSelect(selectId) {
+        const customSelect = document.getElementById(selectId);
+        if (!customSelect) return;
 
-    selected.addEventListener('click', (e) => {
-        e.stopPropagation();
-        items.classList.toggle('select-hide');
-    });
+        const selected = customSelect.querySelector('.select-selected');
+        const items = customSelect.querySelector('.select-items');
+        const options = items.querySelectorAll('div');
 
-    options.forEach(option => {
-        option.addEventListener('click', function (e) {
+        selected.addEventListener('click', (e) => {
             e.stopPropagation();
-            const text = this.innerText.trim();
-            selected.querySelector('.selected-text').innerText = text;
-
-            options.forEach(opt => {
-                opt.querySelector('.check-icon').style.opacity = '0';
-                opt.classList.remove('same-as-selected');
+            // Close other selects
+            document.querySelectorAll('.select-items').forEach(item => {
+                if (item !== items) item.classList.add('select-hide');
             });
-
-            this.querySelector('.check-icon').style.opacity = '1';
-            this.classList.add('same-as-selected');
-            items.classList.add('select-hide');
+            items.classList.toggle('select-hide');
         });
-    });
+
+        options.forEach(option => {
+            option.addEventListener('click', function (e) {
+                e.stopPropagation();
+                // Get main text (ignoring the sanskrit span if present)
+                const textNode = Array.from(this.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
+                const text = textNode ? textNode.textContent.trim() : this.innerText.trim();
+
+                selected.querySelector('.selected-text').innerText = text;
+
+                options.forEach(opt => {
+                    const icon = opt.querySelector('.check-icon');
+                    if (icon) icon.style.opacity = '0';
+                    opt.classList.remove('same-as-selected');
+                });
+
+                const checkIcon = this.querySelector('.check-icon');
+                if (checkIcon) checkIcon.style.opacity = '1';
+                this.classList.add('same-as-selected');
+                items.classList.add('select-hide');
+            });
+        });
+    }
+
+    initCustomSelect('ageSelect');
+    initCustomSelect('knowledgeSelect');
 
     document.addEventListener('click', (e) => {
-        if (!customSelect.contains(e.target)) {
-            items.classList.add('select-hide');
-        }
+        document.querySelectorAll('.select-items').forEach(items => {
+            if (!items.parentElement.contains(e.target)) {
+                items.classList.add('select-hide');
+            }
+        });
     });
 
     // Range Slider
@@ -212,10 +230,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 // 1. Gather Text Data
                 const name = document.getElementById('name').value || 'Anonymous';
                 const age = document.querySelector('#ageSelect .selected-text').innerText;
+                const sanskritKnowledge = document.querySelector('#knowledgeSelect .selected-text').innerText;
                 const motherTongue = motherTongueInput.value || 'Not provided';
 
                 const feelingInput = document.querySelector('input[name="feeling"]:checked');
                 const feeling = feelingInput ? feelingInput.value : 'None';
+
+                const vocabConnectInput = document.querySelector('input[name="vocab-connect"]:checked');
+                const vocabConnect = vocabConnectInput ? vocabConnectInput.value : 'None';
 
                 const activeStars = document.querySelectorAll('#starRating i.active').length;
                 const accessibility = document.getElementById('accessibility-slider').value;
@@ -283,8 +305,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         {
                             name: name,
                             ageBracket: age,
+                            sanskritKnowledge: sanskritKnowledge,
                             motherTongue: motherTongue,
                             feeling: feeling,
+                            vocabConnectScore: vocabConnect,
                             rating: activeStars,
                             accessibilityScore: accessibility,
                             story: story,

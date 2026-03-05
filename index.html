@@ -7,7 +7,7 @@
     <title>॥ ऋतम् ॥ RITAM Feedback Form</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@700&family=Inter:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@500;700&family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
@@ -90,12 +90,13 @@
                     <h3 class="card-title">1. TONE & CONTEXT <span class="subtitle-light">(Demographics)</span></h3>
 
                     <div class="form-group">
-                        <label for="name">Name <span class="subtitle-light">(Optional)</span></label>
-                        <input type="text" id="name" class="form-control">
+                        <label for="name">Name <span class="sanskrit-small">नाम</span> <span
+                                class="subtitle-light">(Optional)</span></label>
+                        <input type="text" id="name" class="form-control" placeholder="नाम">
                     </div>
 
                     <div class="form-group">
-                        <label>Age Bracket</label>
+                        <label>Age Group <span class="sanskrit-small">वयः</span></label>
                         <div class="custom-select" id="ageSelect">
                             <div class="select-selected">
                                 <span class="selected-text">18-30</span>
@@ -115,9 +116,30 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="mother-tongue">Mother Tongue</label>
-                        <input type="text" id="mother-tongue" class="form-control" placeholder="Mother Tongue">
+                        <label for="mother-tongue">Mother Tongue <span class="sanskrit-small">मातृभाषा</span></label>
+                        <input type="text" id="mother-tongue" class="form-control" placeholder="मातृभाषा">
                         <small class="help-text">Helping us celebrate diverse voices.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Current Sanskrit Knowledge <span class="sanskrit-small">संस्कृतज्ञानस्तरः</span></label>
+                        <div class="custom-select" id="knowledgeSelect">
+                            <div class="select-selected">
+                                <span class="selected-text">Complete Beginner</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="select-items select-hide">
+                                <div class="same-as-selected" data-value="beginner"><i
+                                        class="fa-solid fa-check check-icon" style="opacity:1;"></i> Complete Beginner
+                                    <span class="sanskrit-opt">नूतनच्छात्र:/ नूतनच्छात्रा</span>
+                                </div>
+                                <div data-value="school"><i class="fa-solid fa-check check-icon" style="opacity:0;"></i>
+                                    Studied in School <span class="sanskrit-opt">विद्यालये अधीतम्</span></div>
+                                <div data-value="advanced"><i class="fa-solid fa-check check-icon"
+                                        style="opacity:0;"></i>
+                                    Intermediate/Advanced <span class="sanskrit-opt">मध्यम:/प्रगत:</span></div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -167,21 +189,61 @@
                         </div>
                     </div>
 
-                    <div class="form-group mb-0">
-                        <label class="mb-label">Compared to traditional exams, how accessible did this feel?</label>
+                    <div class="form-group">
+                        <label class="mb-label">Compared to traditional Sanskrit learning at primary stage, did you
+                            experience Sanskrit learning through this music is simple and easy?<br>
+                            <span class="sanskrit-label">पारम्परिक-शिक्षणतुलनया, सङ्गीतमाध्यमेन प्राथमिक-संस्कृतशिक्षणं
+                                सरलम् अनुभूतं वा?</span>
+                        </label>
                         <div class="slider-container">
                             <input type="range" min="0" max="10" value="0" class="custom-slider"
                                 id="accessibility-slider">
                             <div class="slider-labels">
                                 <div class="slider-label-left">
                                     <span class="slider-val">0</span><br>
-                                    <span class="slider-text">Traditional/Rigid</span>
+                                    <span class="slider-text">KATHINAM <span class="sanskrit-small">कठिनम्</span></span>
                                 </div>
                                 <div class="slider-label-right">
                                     <span class="slider-val">10</span><br>
-                                    <span class="slider-text">Alive/Natural</span>
+                                    <span class="slider-text">ATISARALAM <span
+                                            class="sanskrit-small">अतिसरलम्</span></span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-0">
+                        <label class="mb-label">Did the familiar tune of the original song help your brain to connect
+                            with the new Sanskrit vocabulary?<br>
+                            <span class="sanskrit-label">पूर्वपरिचित-गीतमाध्यमेन नूतन-संस्कृतशब्दानां परिचयः
+                                अभवत्?</span>
+                        </label>
+                        <div class="emoji-rating-group" id="vocabRating">
+                            <div class="rating-track"></div>
+                            <label class="emoji-option">
+                                <input type="radio" name="vocab-connect" value="confused">
+                                <span class="emoji">🤔</span>
+                                <span class="emoji-label">Difficult <span class="tiny-emoji">😕</span></span>
+                                <span class="radio-custom"></span>
+                            </label>
+                            <label class="emoji-option">
+                                <input type="radio" name="vocab-connect" value="neutral">
+                                <span class="emoji">😐</span>
+                                <span class="emoji-label">Neutral</span>
+                                <span class="radio-custom"></span>
+                            </label>
+                            <label class="emoji-option">
+                                <input type="radio" name="vocab-connect" value="helpful">
+                                <span class="emoji">😊</span>
+                                <span class="emoji-label">Helpful</span>
+                                <span class="radio-custom"></span>
+                            </label>
+                            <label class="emoji-option">
+                                <input type="radio" name="vocab-connect" value="amazed" checked>
+                                <span class="emoji">🤩</span>
+                                <span class="emoji-label">Very Helpful</span>
+                                <span class="radio-custom"></span>
+                            </label>
                         </div>
                     </div>
                 </section>
@@ -191,10 +253,15 @@
                     <h3 class="card-title">3. SHARE YOUR STORY <span class="subtitle-light">(Open Feedback)</span></h3>
 
                     <div class="form-group">
-                        <label for="story" class="mb-label font-normal-thick">Did today's performance change how you
-                            view the future of Sanskrit? How does this compare to your past experiences?</label>
+                        <label for="story" class="mb-label font-normal-thick">Did today's performance gave you a
+                            different perspective or approach about the future of Sanskrit Language? How do you compare
+                            its musical approach with your past experiences ?<br>
+                            <span class="sanskrit-label">अद्यतनीय-प्रस्तुतिः संस्कृतभाषाविषये भवद्भ्यः नूतन: दृष्टिकोनः
+                                प्रदत्तः वा? पूर्वानुभवदृष्ट्या तुलनया एषः सङ्गीतसंस्कृतमार्गः कीदृशः अस्ति? कृपया
+                                स्वानुभवं लिखन्तु ध्वनिमुद्रितं वा कुर्वन्तु।</span>
+                        </label>
                         <textarea id="story" class="form-control textarea"
-                            placeholder="Type your thoughts here or share your voice..."></textarea>
+                            placeholder="स्वानुभवं लिखन्तु... Type your thoughts here or share your voice..."></textarea>
                     </div>
 
                     <div class="action-buttons">

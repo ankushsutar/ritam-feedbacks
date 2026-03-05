@@ -164,7 +164,7 @@ body {
 .banner-strip {
   background: rgba(255, 255, 255, 0.4);
   padding: 10px 0;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 600;
   color: #444;
   margin: 0 -20px;
@@ -212,7 +212,8 @@ body {
 
 .form-group>label {
   display: block;
-  font-size: 14px;
+  font-size: 16px;
+  /* Increased from 14px */
   font-weight: 700;
   margin-bottom: 8px;
   color: var(--text-dark);
@@ -220,7 +221,8 @@ body {
 
 .mb-label {
   display: block;
-  font-size: 14px;
+  font-size: 16px;
+  /* Increased from 14px */
   font-weight: 700;
   margin-bottom: 12px;
   line-height: 1.4;
@@ -228,7 +230,8 @@ body {
 
 .font-normal-thick {
   font-weight: 600 !important;
-  font-size: 13.5px !important;
+  font-size: 15.5px !important;
+  /* Increased from 13.5px */
 }
 
 .form-control {
@@ -473,7 +476,7 @@ body {
 }
 
 .slider-text {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-dark);
 }
@@ -619,34 +622,38 @@ body {
 }
 
 .consent-text {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-dark);
   line-height: 1.4;
 }
 
-/* Sanskrit Styles */
+/* Sanskrit Styles - Enhanced for Seniors */
 .sanskrit-small {
   font-family: 'Noto Serif Devanagari', serif;
-  font-size: 13px;
+  font-size: 16px;
+  /* Increased from 13px */
   color: var(--primary-teal);
-  margin-left: 4px;
+  margin-left: 6px;
 }
 
 .sanskrit-opt {
   font-family: 'Noto Serif Devanagari', serif;
-  font-size: 12px;
+  font-size: 15px;
+  /* Increased from 12px */
   color: var(--text-muted);
-  margin-left: 8px;
+  margin-left: 10px;
 }
 
 .sanskrit-label {
   display: block;
   font-family: 'Noto Serif Devanagari', serif;
-  font-size: 13px;
+  font-size: 17px;
+  /* Increased from 13px */
   color: var(--primary-teal-dark);
-  margin-top: 4px;
+  margin-top: 6px;
   font-weight: 500;
+  line-height: 1.5;
 }
 
 @media (max-width: 380px) {

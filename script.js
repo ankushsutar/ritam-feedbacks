@@ -198,10 +198,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function validateForm() {
         const isMotherTongueValid = motherTongueInput.value.trim() !== '';
-        const isStoryValid = storyInput.value.trim().length >= 10;
         const isConsentValid = consentCheckbox.checked;
 
-        if (isMotherTongueValid && isStoryValid && isConsentValid) {
+        if (isMotherTongueValid && isConsentValid) {
             submitBtn.disabled = false;
         } else {
             submitBtn.disabled = true;
@@ -209,7 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     motherTongueInput.addEventListener('input', validateForm);
-    storyInput.addEventListener('input', validateForm);
     consentCheckbox.addEventListener('change', validateForm);
 
     // Initial validation check
